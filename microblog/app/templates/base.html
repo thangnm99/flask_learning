@@ -13,19 +13,30 @@
 <body>
     <div>Microblog: <a href="/index">Home</a></div>
     {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+<!--    {% if messages %}-->
+<!--    <ul>-->
+<!--        {% for message in messages %}-->
+<!--        <li>{{ message }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--    {% endif %}-->
+    {% if current_user.is_anonymous %}
+    <div> Login <a href="{{ url_for('login') }}">here</a></div>
     {% else %}
-    <div> Login <a href="/login">here</a></div>
+    <div> Logout <a href="{{ url_for('logout') }}">here</a></div>
     {% endif %}
     <hr>
     {% block content %} {% endblock %}
 
     {% endwith %}
-
+<!--   <div>-->
+<!--        Microblog:-->
+<!--        <a href="{{ url_for('index') }}">Home</a>-->
+<!--        {% if current_user.is_anonymous %}-->
+<!--        <a href="{{ url_for('login') }}">Login</a>-->
+<!--        {% else %}-->
+<!--        <a href="{{ url_for('logout') }}">Logout</a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
 </body>
 </html>
